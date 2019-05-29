@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pluralsight.model.Goal;
+import com.pluralsight.model.GoalReport;
 import com.pluralsight.repository.GoalRepository;
 
 @Service("goalService")
@@ -25,7 +26,12 @@ public class GoalServiceimpl implements GoalService {
 
 	@Override
 	public List<Goal> findAllGoals() {
-		return goalRepository.loadAll();
+		return goalRepository.findAll();
+	}
+	
+	@Override
+	public List<GoalReport> findAllGoalReports() {
+		return goalRepository.findAllGoalReports();
 	}
 }
 
