@@ -11,7 +11,23 @@
 	<http auto-config="true">
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 	</http>
+	
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder hash="bcrypt" /> 
+			<jdbc-user-service data-source-ref="dataSource" />
+		</authentication-provider>		
+	</authentication-manager>
+	
+	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="url" value="jdbc:mysql://localhost:3308/fitnessTracker" />	
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="password" />
+	</beans:bean>
+	
 
+<!--  	
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
@@ -19,5 +35,5 @@
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
-	
+-->	
 </beans:beans>
