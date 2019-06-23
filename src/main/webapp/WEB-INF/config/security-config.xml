@@ -8,17 +8,20 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<http auto-config="false">
+	<http auto-config="true">
 		<intercept-url pattern="/login.html" access="isAnonymous()"/>
+		<intercept-url pattern="/loginFailed.html" access="isAnonymous()" />
+		<intercept-url pattern="/logout.html" access="isAnonymous()" />
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
-		<form-login login-page="/login.html"
+		<form-login login-page="/login.html"  
 					username-parameter="j_username" 
 					password-parameter="j_password" 
-					login-processing-url="/j_spring_security_check" 
-					authentication-failure-url="/login?login_error=1" 
+					login-processing-url="/j_spring_security_check"
+					authentication-failure-url="/loginFailed.html" 
 		/>
+        <logout logout-url="/j_spring_security_logout"
+        		logout-success-url="/logout.html" />
 		<csrf disabled="true" />
-        <logout logout-success-url="/"  />
 	</http>
 	
 	<authentication-manager>
