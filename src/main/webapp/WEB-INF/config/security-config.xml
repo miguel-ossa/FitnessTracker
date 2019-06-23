@@ -12,6 +12,7 @@
 		<intercept-url pattern="/login.html" access="isAnonymous()"/>
 		<intercept-url pattern="/loginFailed.html" access="isAnonymous()" />
 		<intercept-url pattern="/logout.html" access="isAnonymous()" />
+		<intercept-url pattern="/403.html" access="isAnonymous()" />
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 		<form-login login-page="/login.html"  
 					username-parameter="j_username" 
@@ -21,6 +22,7 @@
 		/>
         <logout logout-url="/j_spring_security_logout"
         		logout-success-url="/logout.html" />
+        <access-denied-handler error-page="/403.html" />
 		<csrf disabled="true" />
 	</http>
 	
