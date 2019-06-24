@@ -8,11 +8,11 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<http auto-config="true">
-		<intercept-url pattern="/login.html" access="isAnonymous()"/>
-		<intercept-url pattern="/loginFailed.html" access="isAnonymous()" />
-		<intercept-url pattern="/logout.html" access="isAnonymous()" />
-		<intercept-url pattern="/403.html" access="isAnonymous()" />
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/login.html" access="permitAll"/>
+		<intercept-url pattern="/loginFailed.html" access="permitAll" />
+		<intercept-url pattern="/logout.html" access="permitAll" />
+		<intercept-url pattern="/403.html" access="permitAll" />
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 		<form-login login-page="/login.html"  
 					username-parameter="j_username" 
